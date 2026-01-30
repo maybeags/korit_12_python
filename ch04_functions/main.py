@@ -87,5 +87,29 @@ vending_machine(3000)
 음료수 = 2개, 잔돈 = 1600원
 음료수 = 3개, 잔돈 = 900원
 음료수 = 4개, 잔돈 = 200원
-
 '''
+def vending_machine(money):
+    drink_price = 700
+    for i in range(int(money / drink_price) + 1):
+        print(f'음료수 = {i}개, 잔돈 = {money-(drink_price*i)}')
+
+vending_machine(3500)
+
+
+# 저의 기본 전제는 메인 단계에서 굴려보고 함수화하는거라서 좀 큰 사이즈의 hangman으로 갑니다
+ch05_hangman / hangman1.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
