@@ -13,3 +13,205 @@ set_example = {100, 200, 300, 400, '김오'}
 print(set_example)
 dict_example = {'이름': '김일', '나이': 20, '학교': '코리아아이티'}
 print(dict_example)
+'''
+1. list : 여러 값을 저장할 때 가장 많이 사용. 자료형이 서로 다르더라도 하나의 리스트에 저장 가능. Java 기준 하나의 배열에 동일한 자료형만 들어갈 수 있는 것과 달리 강점을 가집니다.
+'''
+# list의 선언 및 초기화
+# li1 = [ 1,2,3,'김사' ]
+'''
+    1.1 list의 index / slice
+        list는 str과 동일한 방식의 index / slicing을 지원
+        1) 인덱스 / 마이너스 인덱스
+'''
+# print(li1[0])
+# print(li1[1])
+# print(li1[2])
+# print(li1[3])
+# print(li1[-1])
+# print(li1[-2])
+# print(li1[-3])
+# print(li1[-4])
+'''
+        2) slicing
+            str의 slicing과 같이 '시작인덱스:종료인덱스:증감값'으로 이루어져 있음.
+'''
+# li2 = [ 100, 3.14, 'hello' ]    # list 선언 및 초기화 방법 # 1
+# li3 = list((4,5,6,7,8,9,0))     # list 선언 및 초기화 방법 # 2
+# print(li3[0:4:2])               # 시작인덱스부터 4 번지 앞까지, 2씩 증가시키면서 출력되겠네요. 이런거 해석하는게 종종 나왔었습니다.
+'''
+        3) list의 element 추가와 삭제
+            list에 새로운 요소를 추가할 때는 아까 한 것처럼 .append()를 사용할 수 있습니다. 그리고 .insert()도 존재합니다.
+            
+            .append() - 항상 마지막 인덱스에 element를 추가
+            .insert(위치, 값)  - 정해진 위치(인덱스)에 해당 값을 추가
+'''
+# scores = [30, 40, 50]
+# print(scores)
+# scores.append(100)
+# print(scores)
+# scores.insert(0, 90)
+# print(scores)       # 결과값 : [ 90, 30, 40, 50, 100 ]
+'''
+            .pop()의 경우 NoArgs라면 맨마지막 element가 삭제됨.
+            .pop(인덱스넘버)로 작성하면 해당 인덱스의 마지막 element를 삭제함.
+'''
+# print(scores.pop())     # 결과값 : 100 맨마지막 인덱스의 element를 삭제하고 걔를 return
+# print(scores)
+# print(scores.pop(0))    # 결과값 : 90
+# print(scores)
+'''
+        교재에는 없는데 수업하는 삭제 메서드 : .remove(값) - list 내에 해당 값을 찾아내서 삭제함(인덱스가 아닙니다)
+'''
+# print(scores.remove(50))    # 결과값 : None
+# scores.remove(300)        # 추후 예외처리를 하게 될 수도 있겠네요.
+# scores.pop(10)
+# print(scores)
+'''
+li4 리스트를 선언하고, 1부터 10까지 집어 넣어 보세요.
+print(li4) 결과값은 [1,2,3,4,5,6,7,8,9,10]
+
+각 list 내의 element들을 뽑아내서 * 2씩 시키겠습니다.
+일반 for문 형식으로 한 번
+enhanced for문 형식으로 한 번 해서 첫 번째 element가 4가 되어야겠습니다.
+'''
+li4 = []
+for i in range(1, 11):
+    li4.append(i)               # '_' 대입하는 것과 차이 없죠.
+print(li4)
+
+for i in range(len(li4)):
+    li4[i] *= 2             # 복합대입연산자 사용
+print(li4)
+
+print('[', end=' ')
+for num in li4:
+    num *= 2
+    if num == 40:
+        print(num, end=' ')
+    else:
+        print(num, end=', ')
+print(']', end=' ')
+# 귀찮다는 것을 알았습니다. 사실상 list 내에서의 element들에 대해 연산을 일괄적으로 적용하는 method가 따로 있습니다. 그리고 우리는 그것을 JS에서 해보기도 했습니다.
+print()
+modified_li4 = list(map(lambda num: num*2, li4))
+# 이상의 경우가 극단적으로 list의 내부 각각의 element들에 동일한 함수를 적용한 결과를 적용하는 map() 함수입니다. 그런데 저희는 JS에서 배열의 method로 사용했었습니다. 이상의 코드가 좀 문제가 있다면 map()함수의 결과값이 map 객체에 해당하기 때문에 list() 함수를 통한 형변환을 해줘야한다는 점입니다.
+print(modified_li4)
+'''
+    2. tuple(튜플) : 저장된 값을 변경할 수 없는 list라고 생각하시면 됩니다. 순서는 있기 때문에 index 넘버의 사용과 slicing은 사용 가능하지만 추가 / 수정 / 삭제 불가능.
+'''
+tu1 = (1,2,3)           # 튜플 생성 방법 # 1
+tu2 = tuple((4,5,6))    # 튜플 생성 방법 # 2
+tu3 = 7,8,9             # 튜플 생성 방법 # 3
+
+print(type(tu3))        # 결과값 : <class 'tuple'>
+a, b, c = 7, 8, 9       # 복수의 변수 선언 및 초기화 방법 -> 변수 개수와 데이터 개수가 같으면 알아서 '순서대로' 대입됩니다.
+
+# tu4 = 0
+
+tu5 = 'hello. ', 'good morning. ', 'my name is ', 'kim-il ', 'i am ', '20 ' , 'years old.'
+
+for word in tu5:        # 사실상 tuple 수업이 아니라 str method관련이죠.
+    print(word.title(), end='')
+    # 결과값 : Hello. Good Morning. My Name Is Kim-Il I Am 20 Years Old.
+
+print()
+print(tu5)
+'''
+이상의 예시를 남겨두는 이유는 우리가 배우는 collection의 개념과 내부 element의 자료형이 서로 다르다는 점 때문입니다. tuple 자체는 추가 / 수정 / 삭제가 불가능했잖아요. 그런데 내부 element 자체는 str이니까 데이터의 가공이 가능하겠네요.
+
+    3. set 세트
+        : 수학의 집합 개념, Java와 동일합니다.
+'''
+set1 = {1,2,3}          # 세트 생성 방법 # 1
+set2 = set({4,5,6})     # 세트 생성 방법 # 2
+
+# 비어있는 list / tuple / set 생성 방법
+li = []
+tu = ()
+se = {}             # 이러면 dictionary 만들어집니다.
+se1 = set({})       # 그래서 이래야만 빈 set가 생성되기 때문에 위에서 생성 방법을 작성했습니다.
+print(type(li))
+print(type(tu))
+print(type(se)) # 결과값 : <class 'dict'>
+'''
+list / tuple은 index가 존재한다고 했습니다. 그래서 이렇게 인덱스가 존재하는 애들을 sequence로 분류하고, set / dictionary의 경우에는 인덱스가 없기 때문에 비시퀀스라는 표현을 쓰기도 합니다.
+
+    set 관련 메서드
+    1. .add() - set에 새로운 element 추가
+    2. .remove() - 기존 element 삭제    -> index가 없으니까 .pop()이 없겠네요.
+    3. .discard() - 기존 element 삭제
+'''
+se3 = {10,20,30}
+se3.add(50)
+print(se3)  # 결과값 : {10, 20, 50, 30}
+se3.remove(30)  # 순서가 없기 때문에 '값'을 정확하게 입력해야만 합니다.
+print(se3)  # 결과값 : {10, 20, 50}
+
+# remove() vs. discard()
+# se3.remove(70)        # 얘는 오류 발생
+# print(se3)
+se3.discard(70)         # 얘는 오류가 발생하지 않습니다.
+print(se3)
+'''
+.remove()의 경우 argument로 set 내에 있는 값을 정확하게 입력 하지 않으면 KeyError 예외가 발생합니다. 반면에 discard()의 경우에는 set내에 없는 값을 입력했을 경우 해당 값이 애초에 존재하지 않기 때문에 변함 없는 상태로 메서드가 종료됩니다.
+'''
+# 인덱스 넘버는 없지만 향상된 for문으로 내부 element를 출력할 수는 있습니다.
+for num in se3:
+    print(num)          # 순서는 담보 못한다.
+'''
+    4. dict(ionary) - Java에서의 Map / JS에서의 Object / JSON과 비슷한 형식입니다. 
+'''
+dict1 = {
+    '이름': '김일',
+    '나이': 20,
+    '주소': ['서울특별시', '마포구', '목동'],
+}
+'''
+전에 수업한 것처럼 167 번 라인까지 key-value pair이 있는데, 나중에 학교라는 key를 추가하려고 할 때, 167 번 라인에 콤마 치고 엔터 치고 '학교': '코리아아이티'같은 식으로 추가하기 번거로우니까 나중에 확장성을 위해서 미리 콤마쳐두는 편입니다. 그러면 그냥 168 번 라인에 추가 property를 넣으면 되니까요.
+
+
+정말정말정말 중요하게 제가 반복반복적으로 말하는 부분 dictionary에서 반복문 돌리면 key가 나옵니다.
+'''
+for key in dict1:
+    print(key)
+
+# 그렇다면 value를 확인하기 위해서는
+for key in dict1:
+    print(dict1[key])               # 매우 중요.
+
+# key들만 추출하는 메서드
+print(dict1.keys())
+print(type(dict1.keys()))           # 결과값 : <class 'dict_keys'>
+print(list(dict1.keys()))           # 결과값 : ['이름', '나이', '주소']
+# value들만 추출하는 메서드
+print(dict1.values())
+print(type(dict1.values()))         # 결과값 : <class 'dict_values'>
+
+# key들 혹은 value들만 뽑아서 list를 만들고 싶다면 list() 형변환 함수를 사용하셔야 합니다.
+
+'''
+그래서 collections 수업을 할 때 매우 중요한 점은 list를 배웠을 때 list만 고려할 것이 아니라 set / tuple / dictionary로 자료형을 변경하는 것이 가능한가입니다.
+
+    1) dictionary에서 property 추가 / 삭제
+'''
+dict1['직업'] = '웹 퍼블리셔'  # 기존에 없는 key를 입력하고 = value 하시면 됩니다.
+print(dict1)
+dict1['직업'] = '웹 개발자'   # key 하나당 value는 동일하기 때문에 재대입이 이루어집니다.
+print(dict1)
+
+print(dict1.pop('직업'))    # key를 알아야지 삭제 가능합니다 / .pop()의 return 특성이 중요하죠. 그러면 최종 value가 뽑혀져 나올테니까 결과값 : 웹 개발자
+
+'''
+응용 예제
+
+list [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]의 3번째 요소로부터 7번째 요소만 추출한 결과, 그리고 그
+list에서 2 번째 요소를 출력하는 프로그램을 작성하시오.
+
+실행 예
+3 번째 요소로부터 7 번째 요소 = [30, 40, 50, 60, 70]
+3 번째 요소로부터 7 번째 요소 중 2 번째 요소 = 40
+
+
+'''
+
+
