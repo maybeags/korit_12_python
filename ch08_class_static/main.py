@@ -129,8 +129,30 @@ del man
 5. man 인스턴스가 삭제되면 다음과 같은 메시지를 출력할 수 있도록 소멸자를 정의하시오.
 RIP 김일
 '''
+class Person:
+    population = 0
 
+    def __init__(self, name):
+        self.name = name
+        Person.population += 1
+        print(f'{self.name}이(가) 태어났습니다.')
 
+    @classmethod
+    def get_population(cls):
+        return cls.population
+
+    def __del__(self):
+        print(f'RIP {self.name}')
+        Person.population -= 1
+
+man = Person('김일')
+woman = Person('김이')
+print(f'전체 인구수 : {Person.get_population()}')
+
+del man
+print(f'전체 인구수 : {Person.get_population()}')
+
+# ch09_coffee_machine_pop -> main.py
 
 
 
