@@ -426,3 +426,28 @@ count_even_odd([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 짝수의 개수 : 5개
 홀수의 개수 : 5개
 '''
+def count_even_odd1(numbers):
+    even_num = 0
+    odd_num = 0
+    for number in numbers:
+        if number % 2 == 0:
+            even_num += 1
+        else:
+            odd_num += 1
+    print(f'짝수의 개수 : {even_num}')
+    print(f'홀수의 개수 : {odd_num}')
+
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+count_even_odd1([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+def count_even_odd2(numbers):
+    even_num = 0
+    for number in numbers:
+        if number % 2 == 0:
+            even_num += 1
+    print(f'짝수의 개수 : {even_num}')
+    print(f'홀수의 개수 : {len(numbers) - even_num}')
+
+count_even_odd2(numbers)
+
+# ch07_classes
