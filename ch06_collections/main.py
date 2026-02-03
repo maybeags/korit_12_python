@@ -347,8 +347,15 @@ elif month_int in [ 1, 3, 5, 7, 8, 10, 12 ]:
 3 번째 사람의 연락처를 입력하세요 >>> 010-3456-7890
 
 입력 받은 연락처는 {'김일':'010-1234-5678', '김이':'010-2345-6789', '김삼':'010-3456-7890'}입니다.
-
-
+'''
+# phones = {}
+# num_of_people = 3
+# for i in range(num_of_people):
+#     dict_key = input(f'{i+1} 번째 사람의 이름을 입력하세요 >>> ')
+#     dict_value = input(f'{i+1} 번째 사람의 연락처를 입력하세요 >>> ')
+#     phones[dict_key] = dict_value
+# print(f'입력 받은 연락처는 {phones}입니다.')
+'''
 collections + function
 
 숫자를 입력한 횟수만큼 비어있는 list에 숫자를 추가하기
@@ -365,11 +372,57 @@ print(add_numbers2(last_num))   # call4() 유형
 숫자 몇 까지 입력하시겠습니까? >>> 10
 [1,2,3,4,5,6,7,8,9,10]
 [1,2,3,4,5,6,7,8,9,10]
-
+'''
+# def add_numbers1(n):
+#     numbers = []
+#     for i in range(n):
+#         numbers.append(i+1)
+#     print(numbers)
+#
+#
+# last_num = int(input('숫자 몇 까지 입력하시겠습니까? >>> '))
+# add_numbers1(last_num)
+#
+# def add_numbers2(n):
+#     numbers = []
+#     for i in range(n):
+#         numbers.append(i+1)
+#     return numbers
+#
+# print(f'{add_numbers2(last_num)} 결과값을 가집니다.')
+'''
 예를 들어 hello = ['안', '녕', '하', '세', '요']라는 list가 있다고 가정했을 때,
 add_numbers3(10, hello)를 호출하면
 [1,2,3,4,5,6,7,8,9,10,'안','녕','하','세','요']
 라는 결과값을 만드는 함수를 정의한다면 어떻게 할 수 있을지 고민해보세요.
 '''
+# def add_numbers3(n, temp_list):
+#     numbers = []
+#     for i in range(n):
+#         numbers.append(i+1)
+#     for letter in temp_list:
+#         numbers.append(letter)
+#     print(numbers)
+#
+# def add_numbers4(n, temp_list):
+#     for i in range(n):
+#         temp_list.insert(i, i+1)        # i 번지에 i+1값을 더해주니까 0 번지에 1 더해주고, 1번지에 2 더해주고, ... 10까지 가게 됩니다.
+#     print(temp_list)
+#
+# add_numbers3(10, ['안', '녕'])
+# add_numbers4(10, ['안', '녕'])
+'''
+짝수와 홀수의 개수 세기
+list를 입력 받아 짝수와 홀수의 개수를 세는 함수를 작성하시오.
 
+함수 정의
+함수 이름 : count_even_odd
+매개변수 : list인 numbers(요소는 모두 정수일 것)
 
+함수 호출
+count_even_odd([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+실행 예
+짝수의 개수 : 5개
+홀수의 개수 : 5개
+'''
