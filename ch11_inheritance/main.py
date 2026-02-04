@@ -181,6 +181,13 @@ print(f'직사각형의 넓이: {rectangle.area()}')
 너비가 10, 높이가 8인 직사각형1이 생성되었습니다.
 이름이 직사각형1인 직사각형의 넓이는 ____ 입니다.
 직사각형의 넓이 : ____
+
+
+git add .
+git commit -m "feat: 20260204 coffee_machine_oop version finished / inheritance"
+git push
+자격 증명 삭제
+자리 정리
 '''
 
 
