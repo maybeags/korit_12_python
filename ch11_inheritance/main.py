@@ -91,3 +91,96 @@ car.hybrid_info()
 현재 충전 상태 : 30
 
 '''
+class Car:
+    max_oil = 50            # 클래스 변수
+    def __init__(self, oil):
+        self.oil = oil
+
+    def add_oil(self, oil):
+        if oil <= 0:
+            return          # 기름을 0이거나 음수값으로 입력하면 메서드 그대로 종료
+        self.oil += oil
+        if self.oil > Car.max_oil:      # 클래스 변수의 한계값 초과라면
+            self.oil = Car.max_oil
+
+    def car_info(self):
+        print(f'현재 주유 상태 : {self.oil}')
+
+class Hybrid(Car):
+    max_amount = 30
+
+    def __init__(self, oil, amount):
+        super().__init__(oil)
+        self.amount = amount
+        print('하이브리드 차량이 생산되었습니다.')
+
+    def add_oil(self, oil):
+        super().add_oil(oil)
+        print(f'기름이 {self.oil} 주유했습니다.')
+
+    def charge(self, amount):
+        if amount <= 0:
+            return
+        self.amount += amount
+        if self.amount > Hybrid.max_amount:
+            self.amount = Hybrid.max_amount
+        print(f'전기를 {self.amount} 충전했습니다.')
+
+    # hybrid_info()
+    def hybrid_info(self):
+        super().car_info()      # 현재 주유 상태가 불러와지겠네요.    -> 어차피 부모 객체가 생성됐기 때문에 super() 키워드를 통해 메서드를 호출할 수 있을겁니다. 그래서 저같으면 hybrid_info()라는 별개의 메서드라기 보다는 car_info() 메서드로 만든 다음에 재정의했을 것 같습니다.
+        print(f'현재 충전 상태 : {self.amount}')
+'''
+
+
+'''
+
+
+car = Hybrid(oil= 0, amount= 0)
+car.add_oil(100)
+car.car_info()
+car.charge(50)
+car.hybrid_info()
+
+'''
+하이브리드 차량이 생산되었습니다.
+기름을 50 주유 했습니다.
+전기를 30 충전 했습니다.
+현재 주유 상태 : 50
+현재 충전 상태 : 30
+
+지시 사항
+1. 슈퍼 클래스 Shape를 정의하시오.
+    - 생성자에 name을 인스턴스 변수로 설정
+    - draw() 메서드를 정의하여 self.name을 출력하시오(call1() 유형)
+2. Shape 클래스를 상속 받는 서브 클래스 Circle을 정의하시오.
+    - Circle은 radius(반지름) 속성을 추가로 가집니다.
+    - 생성자에서 radius도 추가할 것.
+    - area() 메서드를 정의하여 원의 넓이를 계산하고 return 할 것. -> call3()
+        (넓이 = 3.14 * radius * radius)
+3. Shape 클래스를 상속 받는 서브 클래스 Rectangle을 정의하시오.
+    - Rectangle은 width(너비) / height(높이) 속성을 추가로 가집니다.
+    - 생성자에서 width / height를 초기화할 것
+    - area() 메서드를 정의하여 사각형의 넓이를 계산하고 return 할 것 -> call3()
+        (넓이 = 너비 * 높이)
+3. Circle과 Rectangle의 draw() 메서드를 오버라이딩하여 각각의 넓이를 출력할 것.
+
+ 
+circle = Circle('원1', 5)
+circle.draw()
+print(f'원의 넓이 : {circle.area()}')
+
+rectangle = Rectangle('직사각형1', 10, 8)
+rectangle.draw()
+print(f'직사각형의 넓이: {rectangle.area()}')
+
+실행 예
+반지름이 5인 원1이 생성되었습니다.
+이름이 원1인 원의 넓이는 ____ 입니다.
+원의 넓이 : ____
+너비가 10, 높이가 8인 직사각형1이 생성되었습니다.
+이름이 직사각형1인 직사각형의 넓이는 ____ 입니다.
+직사각형의 넓이 : ____
+'''
+
+
