@@ -153,6 +153,7 @@ car.hybrid_info()
 1. 슈퍼 클래스 Shape를 정의하시오.
     - 생성자에 name을 인스턴스 변수로 설정
     - draw() 메서드를 정의하여 self.name을 출력하시오(call1() 유형)
+    - area() 메서드를 정의만 일단 해두겠습니다.
 2. Shape 클래스를 상속 받는 서브 클래스 Circle을 정의하시오.
     - Circle은 radius(반지름) 속성을 추가로 가집니다.
     - 생성자에서 radius도 추가할 것.
@@ -190,4 +191,55 @@ git push
 자리 정리
 '''
 
+class Shape:
+    def __init__(self, name):
+        self.name = name
 
+    def draw(self):
+        print(self.name)
+
+    def area(self): # 로직은 없지만 해두게 되면 자식 클래스들이 동일한 메서드를 override 할 수 있겠네요.
+        pass
+
+class Circle(Shape):
+    def __init__(self, name, radius):
+        super().__init__(name)
+        self.radius = radius
+        print(f'반지름이 {self.radius}인 {self.name}이 생성되었습니다.')
+
+    def draw(self):
+        print(f'이름이 {self.name}인 원의 넓이는 {self.area()}입니다.')
+
+    def area(self):
+        return 3.14*(self.radius**2)
+
+class Rectangle(Shape):
+    def __init__(self, name, width, height):
+        super().__init__(name)
+        self.width = width
+        self.height = height
+        print(f'너비가 {self.width}, 높이가 {self.height}인 {self.name}이 생성되었습니다.')
+
+    def draw(self):
+        # 메서드가 override 된거긴 한데 부모의 로직을 아예 안쓴거죠.
+        print(f'이름이 {self.name}인 직사각형의 넓이는 {self.area()}입니다.')
+
+    def area(self):
+        return self.width*self.height
+
+circle = Circle('원1', 5)
+circle.draw()
+print(f'원의 넓이 : {circle.area()}')
+'''
+너비가 10, 높이가 8인 직사각형1이 생성되었습니다.
+이름이 직사각형1인 직사각형의 넓이는 ____ 입니다.
+직사각형의 넓이 : ____
+'''
+rectangle = Rectangle('직사각형1', 10, 8)
+rectangle.draw()
+print(f'직사각형의 넓이: {rectangle.area()}')
+'''
+git add .
+git commit -m "feat : 20260205 python lesson finished"
+git push
+'''
